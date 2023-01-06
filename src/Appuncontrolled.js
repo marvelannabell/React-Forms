@@ -1,34 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
 
-
-
-
-function App() {
-  const [userName,setUsername]= useState('defaultValue');
-  console.log(userName);//we cat use current userName after change
 const submitHandler=(e)=>{
   e.preventDefault()
+  const formData=new FormData(e.currentTarget)
+  const{username,password}=Object.fromEntries(formData);
+  console.log(username);
 }
 
-const usernameChangeHandler = (e)=>{
-  e.preventDefault();
-  setUsername(e.currentTarget.value);
-}
+function App() {
   return (
     <div className="App">
       <header className="App-header">
         <form onSubmit={submitHandler} >
           <div>
             <label htmlFor="username">Username</label>
-            <input 
-            id='username' 
-            type="text" 
-            name="username" 
-            onChange={usernameChangeHandler}
-            value={userName}/>
-            
+            <input id='username' type="text" name="username"/>
           </div>
           <div>
             <label htmlFor="passwors">Password</label>
